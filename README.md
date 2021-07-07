@@ -41,7 +41,9 @@
 
 ### 实现
 
-#### 自定义标签实现: shopizer/sm-shop/src/main/java/com/salesmanager/shop/tags/CommonResponseHeadersTag.java
+#### 自定义标签实现: 
+
+shopizer/sm-shop/src/main/java/com/salesmanager/shop/tags/CommonResponseHeadersTag.java
 
 ```java
 public class CommonResponseHeadersTag extends SimpleTagSupport {
@@ -85,7 +87,8 @@ public class CommonResponseHeadersTag extends SimpleTagSupport {
 }
 ```
 
-#### 自定义标签 tld 文件: shopizer/sm-shop/src/main/webapp/WEB-INF/shopizer-tags.tld
+#### 自定义标签 tld 文件
+shopizer/sm-shop/src/main/webapp/WEB-INF/shopizer-tags.tld
 
 ```xml
     <tag>
@@ -114,7 +117,8 @@ public class CommonResponseHeadersTag extends SimpleTagSupport {
     </tag>
 ```
 
-#### template: shopizer/sm-shop/src/main/webapp/pages/shop/templates/december/catalogLayout.jsp
+#### Template
+shopizer/sm-shop/src/main/webapp/pages/shop/templates/december/catalogLayout.jsp
 
 ```jsp
 <sm:common-response-headers cacheControl="no-cache" pragma="no-cache" expires="-1"/>
