@@ -38,7 +38,9 @@ public class MessageEncoder extends MessageToByteEncoder {
     protected void encode(ChannelHandlerContext ctx, Object message, ByteBuf out) throws Exception {
         Serializer serializer = Serializer.DEFAULT;
         byte[] data = serializer.serialize(message);
+        // 消息头
         out.writeInt(data.length);
+        // 消息体
         out.writeBytes(data);
         logger.info("Encode {} to bytes[length:{}]", message, data.length);
     }

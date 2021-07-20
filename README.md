@@ -1,5 +1,92 @@
 # ProjectPractice
 
+## Homework 03
+
+### 问题
+
+1. 【必做题】通过 MicroProfile REST Client 实现 POST 接⼝去请求项⽬中的 ShutdownEndpoint，URI：`http://127.0.0.1:8080/actuator/shutdown`
+
+2. 【选做题】完善 my-rest-client 框架 POST ⽅法，实现 `org.geektimes.rest.client.DefaultInvocationBuilder#buildPost `⽅法
+
+### 实现
+
+#### 问题1
+
+见 projects/stage-1/shopizer/sm-shop-model/src/test
+
+引入依赖：
+
+```xml
+        <dependency>
+            <groupId>org.geekbang.projects</groupId>
+            <artifactId>my-configuration</artifactId>
+            <version>${revision}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jersey mp rest client -->
+        <dependency>
+            <groupId>org.glassfish.jersey.ext.microprofile</groupId>
+            <artifactId>jersey-mp-rest-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+```
+
+接口实现：com.salesmanager.rest.service.ActuatorService
+
+```java
+@Path("/actuator")
+public interface ActuatorService {
+
+    @POST
+    @Path("/shutdown")
+    Map<String, String> shutdown();
+
+}
+```
+
+测试 demo: com.salesmanager.rest.service.ActuatorServiceTest
+
+```java
+public class ActuatorServiceTest {
+
+    /**
+     * Test {@link ActuatorService#shutdown()}}
+     */
+    @Test
+    public void testPostShutdown() throws URISyntaxException {
+        URI uri = new URI("http://127.0.0.1:8080");
+        ActuatorService actuatorService = RestClientBuilder.newBuilder()
+                .baseUri(uri)
+                .build(ActuatorService.class);
+
+        Map<String, String> result = actuatorService.shutdown();
+
+        System.out.println(result); // {message=Shutting down, bye...}
+    }
+
+}
+```
+
+
+
+#### 问题2
+
+实现中...
+
+
+
+## Homework 02
+
+实现中...
+
+
+
 ## Homework 01
 
 ### 问题
@@ -41,7 +128,7 @@
 
 ### 实现
 
-#### 自定义标签实现: 
+#### 自定义标签实现
 
 shopizer/sm-shop/src/main/java/com/salesmanager/shop/tags/CommonResponseHeadersTag.java
 
