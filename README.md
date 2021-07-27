@@ -83,7 +83,34 @@ public class ActuatorServiceTest {
 
 ## Homework 02
 
-实现中...
+### 问题
+
+在 my-configuration 基础上，实现 ServletRequest 请求参数的 ConfigSource（MicroProfile Config），提供参考：Apache Commons Configuration 中的 org.apache.commons.configuration.web.ServletRequestConfiguration。
+
+### 实现
+
+见：org.geektimes.configuration.microprofile.config.source.servlet.ServletRequestConfigSource.java
+
+```java
+public class ServletRequestConfigSource extends MapBasedConfigSource {
+
+    private final ServletRequest servletRequest;
+
+    public ServletRequestConfigSource(ServletRequest servletRequest) {
+        super("ServletRequest Init Parameters", 650);
+        this.servletRequest = servletRequest;
+    }
+
+    @Override
+    protected void prepareConfigData(Map configData) throws Throwable {
+        Enumeration<String> parameterNames = servletRequest.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String parameterName = parameterNames.nextElement();
+            configData.put(parameterName, servletRequest.getParameterValues(parameterName));
+        }
+    }
+}
+```
 
 
 
